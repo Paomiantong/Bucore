@@ -29,7 +29,7 @@ Version::Version(std::string ver_json)
 	if(dom.HasMember("inheritsFrom"))
 	{
 		//todo:add current path
-		std::string ihf=dom["inheritsFrom"].GetString(),p=_dirname_+"/.minecraft/version/"+ihf+"/"+ihf+".json";
+		std::string ihf=dom["inheritsFrom"].GetString(),p=_cwd_+"/.minecraft/version/"+ihf+"/"+ihf+".json";
 		Version father(p);
 		//test
 		//Version father("testdata/1.10.2.json");
@@ -61,7 +61,7 @@ void Version::Lib_load(Value& data)
 				//last=tmp1[1]+"-"+tmp1[2]+"-"+native;
 			}else
 				last=tmp1[1]+"-"+tmp1[2];
-			names=_dirname_+"/.minecraft/libraries/"+tmp1[0]+"/"+tmp1[1]+"/"+tmp1[2]+"/"+last+".jar;";
+			names=_cwd_+"/.minecraft/libraries/"+tmp1[0]+"/"+tmp1[1]+"/"+tmp1[2]+"/"+last+".jar;";
 			if(v.HasMember("downloads"))
 			{
 				Value& downloads=v["downloads"]["artifact"];

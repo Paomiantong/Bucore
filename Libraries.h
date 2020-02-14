@@ -3,9 +3,8 @@
 #include <string>
 #include <fstream>
 #include <vector>
-#include <sys/stat.h>
-#include <unistd.h>
 
+#include "System.h"
 #include "rapidjson/document.h"
 using namespace rapidjson;
 

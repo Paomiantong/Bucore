@@ -4,8 +4,7 @@
 
 bool Library::check()
 {
-	struct stat buffer;
-	return (stat (path.c_str(), &buffer) == 0);
+	return _exist_(path);
 }
 
 /*Libraries Part*/
