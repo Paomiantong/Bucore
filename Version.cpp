@@ -61,7 +61,7 @@ void Version::Lib_load(Value& data)
 				//last=tmp1[1]+"-"+tmp1[2]+"-"+native;
 			}else
 				last=tmp1[1]+"-"+tmp1[2];
-			names=_cwd_+"/.minecraft/libraries/"+tmp1[0]+"/"+tmp1[1]+"/"+tmp1[2]+"/"+last+".jar;";
+			names=_cwd_+"/.minecraft/libraries/"+tmp1[0]+"/"+tmp1[1]+"/"+tmp1[2]+"/"+last+".jar";
 			if(v.HasMember("downloads"))
 			{
 				Value& downloads=v["downloads"]["artifact"];
