@@ -28,16 +28,22 @@ Version::Version(std::string ver_json)
 	//if(dom.HasMember("jar"))
 	if(dom.HasMember("inheritsFrom"))
 	{
-		//todo:add current path
 		std::string ihf=dom["inheritsFrom"].GetString(),p=_cwd_+"/.minecraft/version/"+ihf+"/"+ihf+".json";
 		Version father(p);
-		//test
-		//Version father("testdata/1.10.2.json");
-		libraries=father.libraries;	
+		libraries=father.GetLibraries();
 	}
 	Lib_load(dom["libraries"]);
 }
 
+Libraries Version::GetLibraries()
+{
+	return libraries;
+}
+
+std::string Version::GetMainclass()
+{
+	return mainclass;
+}
 
 void Version::Lib_load(Value& data)
 {

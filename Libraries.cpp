@@ -31,6 +31,11 @@ std::vector<Library> Libraries::GetLostLib()
 	return res;
 }
 
+std::vector<Library> Libraries::GetAll()
+{
+	return library;
+}
+
 std::string Libraries::toString()
 {
 	return library[0].path;

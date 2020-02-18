@@ -12,14 +12,16 @@ class Version
 {
 	private:
 		void Lib_load(Value& data);
-	public:
-		Version();
-		Version(std::string ver_json);
 		Libraries libraries;
 		std::string from;
 		std::string ver;
 		std::string mainclass;
 		std::string minecraftarguments;
+	public:
+		Version();
+		Version(std::string ver_json);
+		Libraries GetLibraries();
+		std::string GetMainclass();
 		//Assets assets;
 };
 

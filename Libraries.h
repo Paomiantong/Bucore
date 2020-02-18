@@ -27,6 +27,7 @@ class Libraries
 		std::vector<int> nativelib;
 	public:
 		void Add(std::string path,std::string url,bool native,int size);
+		std::vector<Library> GetAll();
 		std::vector<Library> GetLostLib();
 		std::string toString();
 };
