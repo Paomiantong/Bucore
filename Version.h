@@ -22,6 +22,7 @@ class Version
 		Version(std::string ver_json);
 		Libraries GetLibraries();
 		std::string GetMainclass();
+		std::string GetMinecraftArguments();
 		//Assets assets;
 };
 

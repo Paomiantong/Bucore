@@ -22,6 +22,7 @@ Version::Version(std::string ver_json)
 			if(a_v.IsString())
 			{
 				minecraftarguments+=a_v.GetString();
+				minecraftarguments+=" ";
 			}
 		}
 	}
@@ -43,6 +44,11 @@ Libraries Version::GetLibraries()
 std::string Version::GetMainclass()
 {
 	return mainclass;
+}
+
+std::string Version::GetMinecraftArguments()
+{
+	return minecraftarguments;
 }
 
 void Version::Lib_load(Value& data)
