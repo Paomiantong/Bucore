@@ -1,3 +1,4 @@
 {
-	"test.cpp":"!make&&./go"
+	"test.cpp":"!make go&&./go",
+	"test4http.cpp":"!make test4http&&./test4http"
 }
