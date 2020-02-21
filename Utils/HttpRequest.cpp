@@ -85,3 +85,10 @@ std::string BHttpRequest::GET(std::string path,std::string content)
 
 	return httpSocket(stream.str());
 }
+
+std::string BHttpRequest::Getbody(std::string data)
+{
+	Replace(data,"\r\n\r\n","#",false);
+	std::vector<std::string> tmp = split(data,"#");
+	return tmp[1];
+}

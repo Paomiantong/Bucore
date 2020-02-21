@@ -14,6 +14,8 @@
 #include <string>
 #include <cstring>
 
+#include "Tools.h"
+
 class BHttpRequest
 {
 	private:
@@ -25,7 +27,7 @@ class BHttpRequest
 		std::string httpSocket(std::string request);
 		std::string POST(std::string path,std::string content);
 		std::string GET(std::string path,std::string content);
-
+		static std::string Getbody(std::string data);
 };
 
 #endif
