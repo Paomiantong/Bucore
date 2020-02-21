@@ -25,4 +25,4 @@ Libraries.o : Libraries.h
 System.o : System.h
 
 clean :
-	rm go $(objs)
+	rm go test4http $(objs) $(objs4http)

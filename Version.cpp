@@ -3,7 +3,7 @@
 Version::Version(){}
 Version::Version(std::string ver_json)
 {
-	std::string json = read(ver_json);
+	std::string json = ReadF(ver_json);
 	Document dom;
 	dom.Parse(json.c_str());
 	ver = dom["id"].GetString();
@@ -144,7 +144,7 @@ bool Replace(std::string &str1,std::string str2,std::string str3,bool loop=false
 	return 0;
 }
 
-std::string read(std::string path)
+std::string ReadF(std::string path)
 {
 	std::ifstream F(path.c_str());
 	std::string str,tmp;

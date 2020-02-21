@@ -28,7 +28,7 @@ class Version
 
 bool _Replace(std::string &str1,std::string str2,std::string str3);
 bool Replace(std::string &str1,std::string str2,std::string str3,bool loop);
-std::string read(std::string path);
+std::string ReadF(std::string path);
 bool AllowChecker(Value &val);
 std::vector<std::string> split(const std::string& str, const std::string& delim);
 #endif
