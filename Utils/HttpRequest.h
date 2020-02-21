@@ -20,11 +20,11 @@ class BHttpRequest
 		std::string h_host;
 		int h_port;
 	public:
-	BHttpRequest(std::string host,int port);
-	~BHttpRequest();
-	std::string httpSocket(std::string request);
-	std::string POST(std::string path,std::string content);
-	std::string GET(std::string path,std::string content);
+		BHttpRequest(std::string host,int port);
+		~BHttpRequest();
+		std::string httpSocket(std::string request);
+		std::string POST(std::string path,std::string content);
+		std::string GET(std::string path,std::string content);
 
 };
 
