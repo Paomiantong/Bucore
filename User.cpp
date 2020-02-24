@@ -25,7 +25,6 @@ std::string User::GetaccessToken()
 
 std::string User::auth(std::string email, std::string passwords, std::string clientToken)
 {
-	HttpR::HttpR_init();
 	HttpR hr=HttpR("https://authserver.mojang.com",true);
 
 	Document dom;

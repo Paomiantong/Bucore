@@ -4,6 +4,7 @@
 #include "Libraries.h"
 #include "System.h"
 #include "Utils/Tools.h"
+#include "Utils/Args.h"
 
 class Version
 {
@@ -13,13 +14,13 @@ class Version
 		std::string from;
 		std::string ver;
 		std::string mainclass;
-		std::string minecraftarguments;
+		Args minecraftarguments;
 	public:
 		Version();
 		Version(std::string ver_json);
 		Libraries GetLibraries();
 		std::string GetMainclass();
-		std::string GetMinecraftArguments();
+		Args GetMinecraftArguments();
 		//Assets assets;
 };
 

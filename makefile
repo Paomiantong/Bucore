@@ -1,4 +1,4 @@
-objs= test.o Game.o Version.o Libraries.o System.o Utils/Tools.o
+objs= test.o Game.o Version.o Libraries.o System.o Utils/Tools.o Utils/HttpR.o Utils/Args.o User.o
 
 objs4http = test4http.o Utils/HttpR.o Utils/Tools.o User.o
 
@@ -9,12 +9,15 @@ test4http.o : test4http.cpp
 
 Utils/HttpR.o : Utils/HttpR.cpp
 
+Utils/Args.o : Utils/Args.cpp
+	g++ -c -o Utils/Args.o -std=c++11 Utils/Args.cpp
+
 Utils/Tools.o : Utils/Tools.cpp
 
 User.o : User.cpp
 
 go : $(objs)
-	g++ -o go $(objs)
+	g++ -o go $(objs) -lcurl
 
 test.o : test.cpp
 	g++ -c -o test.o -std=c++11 test.cpp

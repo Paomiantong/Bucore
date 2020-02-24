@@ -5,17 +5,20 @@
 #include <string>
 
 #include "Version.h"
-//#include "User.h"
+#include "User.h"
 
 class Game
 {
 	private:
 		Version vsersion;
-//		User user;
+		User user;
 	public:
+		static void Init();
 		Game();
 		void LoadVersion(Version ver);
+		void LoadUser(User usr);
 		Version GetVersion();
+		User GetUser();
 		std::string config;
 };
 

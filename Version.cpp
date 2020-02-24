@@ -13,16 +13,32 @@ Version::Version(std::string ver_json)
 	//Arguments
 	if(dom.HasMember("minecraftArguments"))//after 1.13
 	{
-		minecraftarguments=dom["minecraftArguments"].GetString();
+		std::string temp = dom["minecraftArguments"].GetString();
+		std::vector<std::string> temp_vector = split(temp," ");
+		std::string pre = "";
+		for(auto i : temp_vector)
+		{
+		
+		   std::string temp_str = i;
+		   if(temp_str.find("$")!=std::string::npos)
+		   	minecraftarguments.Add(pre,temp_str);
+		   else
+		   	pre = temp_str;
+		
+		}
 	}else if(dom.HasMember("arguments"))//1.13 and more
 	{
-		Value &Arg_Game=dom["arguments"]["game"],&Arg_Jvm=dom["arguments"]["jvm"];
+		Value &Arg_Game = dom["arguments"]["game"],&Arg_Jvm = dom["arguments"]["jvm"];
+		std::string pre = "";
 		for(auto &a_v : Arg_Game.GetArray())
 		{
 			if(a_v.IsString())
 			{
-				minecraftarguments+=a_v.GetString();
-				minecraftarguments+=" ";
+				std::string temp = a_v.GetString();
+				if(temp.find("$")!=std::string::npos)
+					minecraftarguments.Add(pre,temp);
+				else
+					pre = temp;
 			}
 		}
 	}
@@ -46,7 +62,7 @@ std::string Version::GetMainclass()
 	return mainclass;
 }
 
-std::string Version::GetMinecraftArguments()
+Args Version::GetMinecraftArguments()
 {
 	return minecraftarguments;
 }
