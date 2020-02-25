@@ -1,7 +1,7 @@
 #include "User.h"
 
 User::User(){}
-User::User(std::string n):name(n){type="legcy";}
+User::User(std::string n):name(n){type="Legacy";}
 
 std::string User::Getuuid()
 {
