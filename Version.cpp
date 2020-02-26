@@ -1,5 +1,6 @@
 #include "Version.h"
 
+
 Version::Version(){}
 Version::Version(std::string ver_json)
 {
@@ -85,7 +86,7 @@ void Version::Lib_load(Value& data)
 			}
 			/*Native Part&Push Library*/
 			std::string classifiers_key;
-			if(tmp1[1].find("platform")!=std::string::npos&&v.HasMember("natives"))
+			if(v.HasMember("natives"))
 			{
 				classifiers_key =  v["natives"][B_OS].GetString();
 				///* TODO: Add arch <25-02-20, yourname> */
@@ -102,7 +103,7 @@ void Version::Lib_load(Value& data)
 				if(v["downloads"].HasMember("classifiers"))
 				{
 					Value& downloads=v["downloads"]["classifiers"][classifiers_key.c_str()];
-					libraries.Add(names,downloads["url"].GetString(),false,downloads["size"].GetInt());
+					libraries.Add(names,downloads["url"].GetString(),true,downloads["size"].GetInt());
 				}
 				else
 				{
@@ -143,8 +144,11 @@ bool AllowChecker(Value &val)
 				if(!rule.HasMember("os"))
 					allowed=(action=="allow");
 				else
-					if (rule["os"]["name"].GetString()==B_OS)
+				{
+					std::string A=rule["os"]["name"].GetString(),B=B_OS;
+					if (A==B)
 						allowed=(action=="allow");
+				}
 			}
 			return allowed;
 		}

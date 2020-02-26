@@ -31,12 +31,35 @@ std::vector<Library> Libraries::GetLostLib()
 	return res;
 }
 
+std::vector<Library> Libraries::GetNativeLib()
+{
+	std::vector<Library> res;
+	for(int i=0;i<library.size();i++)
+	{
+		if(library[i].native)
+		{
+			nativelib.push_back(i);
+		}
+	}
+	for(int i=0;i<nativelib.size();i++)
+	{
+		res.push_back(library[nativelib[i]]);
+	}
+	return res;
+}
+
 std::vector<Library> Libraries::GetAll()
 {
 	return library;
 }
 
-std::string Libraries::toString()
+std::string Libraries::ToClassPathArg()
 {
-	return library[0].path;
+	std::string temp;
+	for(int i=0;i<library.size();i++)
+	{
+		if(!library[i].native)
+			temp+=library[i].path+";";
+	}
+	return temp;
 }

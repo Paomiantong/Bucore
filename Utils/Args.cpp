@@ -1,5 +1,19 @@
 #include "Args.h"
 
+//-XX:+UnlockExperimentalVMOptions -XX:+UseG1GC -XX:G1NewSizePercent=20 -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=50 -XX:G1HeapRegionSize=16M -XX:-UseAdaptiveSizePolicy -XX:-OmitStackTraceInFastThrow -Xmn128m -Xmx1024m -XX:HeapDumpPath=MojangTricksIntelDriversForPerformance_javaw.exe_minecraft.exe.heapdump
+
+Args GETJVM_d()
+{
+	Args JVM_d = Args();
+	JVM_d.Add("-XX:G1NewSizePercent=20");
+	JVM_d.Add("-XX:+UnlockExperimentalVMOptions");
+	JVM_d.Add("-XX:G1ReservePercent=20");
+	JVM_d.Add("-XX:MaxGCPauseMillis=50");
+	JVM_d.Add("-XX:G1HeapRegionSize=16M");
+	JVM_d.Add("-XX:HeapDumpPath=MojangTricksIntelDriversForPerformance_javaw.exe_minecraft.exe.heapdump");
+	return JVM_d;
+}
+
 Args::Args(){}
 
 void Args::Add(std::string name, std::string value)
@@ -30,7 +44,8 @@ std::string Args::ToString()
 	std::string str;
 	for (auto i : args)
 	{
-		str+=i.first+" "+i.second+" ";
+		std::string temp = (i.second=="")?i.second:i.second+" ";
+		str+=i.first+" "+temp;
 	}
 	return str;
 }
