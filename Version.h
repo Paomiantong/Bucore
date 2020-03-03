@@ -15,12 +15,15 @@ class Version
 		std::string ver;
 		std::string mainclass;
 		Args minecraftarguments;
+		Args jvmarguments;
+		std::string loggingArg;
 	public:
 		Version();
 		Version(std::string ver_json);
 		Libraries GetLibraries();
 		std::string GetMainclass();
 		Args GetMinecraftArguments();
+		Args GetJVMArguments();
 		//Assets assets;
 };
 

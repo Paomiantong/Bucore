@@ -17,7 +17,7 @@ Utils/Tools.o : Utils/Tools.cpp
 User.o : User.cpp
 
 go : $(objs)
-	g++ -o go $(objs) -lcurl
+	g++ -g -o go $(objs) -lcurl
 
 test.o : test.cpp
 	g++ -c -o test.o -std=c++11 test.cpp

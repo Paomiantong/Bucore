@@ -12,6 +12,18 @@ Version::Version(std::string ver_json)
 	//if(dom.HasMember("assetIndex"))
 	//	Lau.asindex=dom["assetIndex"]["id"].GetString();
 	//Arguments
+	if(dom.HasMember("logging"))
+	{
+	std::string temp = dom["logging"]["client"]["argument"].GetString(),lid = dom["logging"]["client"]["file"]["id"].GetString();
+	//"assets/log_configs"
+	Replace(temp,"${path}","assets/log_configs/"+lid,false);
+	loggingArg = temp;
+	}
+
+	jvmarguments = JVM_ARGS_D;
+	jvmarguments.Add(loggingArg);
+	jvmarguments.Add("-cp","");
+
 	if(dom.HasMember("minecraftArguments"))//after 1.13
 	{
 		std::string temp = dom["minecraftArguments"].GetString();
@@ -29,7 +41,7 @@ Version::Version(std::string ver_json)
 		}
 	}else if(dom.HasMember("arguments"))//1.13 and more
 	{
-		Value &Arg_Game = dom["arguments"]["game"],&Arg_Jvm = dom["arguments"]["jvm"];
+		Value &Arg_Game = dom["arguments"]["game"];
 		std::string pre = "";
 		for(auto &a_v : Arg_Game.GetArray())
 		{
@@ -66,6 +78,11 @@ std::string Version::GetMainclass()
 Args Version::GetMinecraftArguments()
 {
 	return minecraftarguments;
+}
+
+Args Version::GetJVMArguments()
+{
+	return jvmarguments;
 }
 
 void Version::Lib_load(Value& data)
