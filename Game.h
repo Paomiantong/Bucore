@@ -10,7 +10,7 @@
 class Game
 {
 	private:
-		Version vsersion;
+		Version version;
 		User user;
 	public:
 		static void Init();
@@ -19,6 +19,7 @@ class Game
 		void LoadUser(User usr);
 		Version GetVersion();
 		User GetUser();
+		std::string GenerateStartArguments();
 		std::string config;
 };
 

@@ -9,14 +9,14 @@ Version::Version(std::string ver_json)
 	dom.Parse(json.c_str());
 	ver = dom["id"].GetString();
 	mainclass = dom["mainClass"].GetString();
-	//if(dom.HasMember("assetIndex"))
-	//	Lau.asindex=dom["assetIndex"]["id"].GetString();
+	if(dom.HasMember("assetIndex"))
+		assetidx=dom["assetIndex"]["id"].GetString();
 	//Arguments
 	if(dom.HasMember("logging"))
 	{
 	std::string temp = dom["logging"]["client"]["argument"].GetString(),lid = dom["logging"]["client"]["file"]["id"].GetString();
 	//"assets/log_configs"
-	Replace(temp,"${path}","assets/log_configs/"+lid,false);
+	Replace(temp,"${path}","\""+_cwd_+"assets/log_configs/"+lid+"\"",false);
 	loggingArg = temp;
 	}
 
@@ -33,7 +33,7 @@ Version::Version(std::string ver_json)
 		{
 		
 		   std::string temp_str = i;
-		   if(temp_str.find("$")!=std::string::npos)
+		   if(temp_str.find("--")==std::string::npos)
 		   	minecraftarguments.Add(pre,temp_str);
 		   else
 		   	pre = temp_str;
@@ -48,7 +48,7 @@ Version::Version(std::string ver_json)
 			if(a_v.IsString())
 			{
 				std::string temp = a_v.GetString();
-				if(temp.find("$")!=std::string::npos)
+				if(temp.find("--")==std::string::npos)
 					minecraftarguments.Add(pre,temp);
 				else
 					pre = temp;
@@ -61,13 +61,28 @@ Version::Version(std::string ver_json)
 		std::string ihf=dom["inheritsFrom"].GetString(),p=_cwd_+"/.minecraft/version/"+ihf+"/"+ihf+".json";
 		Version father(p);
 		libraries=father.GetLibraries();
+		assetidx=father.GetAssetIndex();
 	}
 	Lib_load(dom["libraries"]);
+	if(!dom.HasMember("inheritsFrom"))
+	{
+		libraries.Add(_cwd_+"/.minecraft/version/"+ver+"/"+ver+".jar","null",false,-1);
+	}
 }
 
 Libraries Version::GetLibraries()
 {
 	return libraries;
+}
+
+std::string Version::GetId()
+{
+	return ver;
+}
+
+std::string Version::GetAssetIndex()
+{
+	return assetidx;
 }
 
 std::string Version::GetMainclass()

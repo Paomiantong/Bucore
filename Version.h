@@ -13,6 +13,7 @@ class Version
 		Libraries libraries;
 		std::string from;
 		std::string ver;
+		std::string assetidx;
 		std::string mainclass;
 		Args minecraftarguments;
 		Args jvmarguments;
@@ -22,6 +23,8 @@ class Version
 		Version(std::string ver_json);
 		Libraries GetLibraries();
 		std::string GetMainclass();
+		std::string GetId();
+		std::string GetAssetIndex();
 		Args GetMinecraftArguments();
 		Args GetJVMArguments();
 		//Assets assets;

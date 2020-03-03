@@ -15,6 +15,8 @@ Args GETJVM_d()
 	#endif
 	JVM_d.Add("-Dminecraft.launcher.brand=Bucore");
 	JVM_d.Add("-Dminecraft.launcher.version=0.01");
+	JVM_d.Add("-Dfml.ignoreInvalidMinecraftCertificates=true");
+	JVM_d.Add("-Dfml.ignorePatchDiscrepancies=true");
 	return JVM_d;
 }
 

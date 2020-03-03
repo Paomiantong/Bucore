@@ -1,7 +1,13 @@
 #include "User.h"
 
 User::User(){}
+
 User::User(std::string n):name(n){type="Legacy";}
+
+User::User(std::string email,std::string passwords,std::string clientToken)
+{
+	auth(email,passwords,clientToken);
+}
 
 std::string User::Getuuid()
 {
@@ -21,6 +27,16 @@ std::string User::Gettype()
 std::string User::GetaccessToken()
 {
 	return accessToken;
+}
+
+void User::Setuuid(std::string u)
+{
+	uuid = u;
+}
+
+void User::SetaccessToken(std::string a)
+{
+	accessToken = a;
 }
 
 std::string User::auth(std::string email, std::string passwords, std::string clientToken)
@@ -48,6 +64,7 @@ std::string User::auth(std::string email, std::string passwords, std::string cli
 	accessToken = dom["accessToken"].GetString();
 	name = dom["selectedProfile"]["name"].GetString();
 	uuid = dom["selectedProfile"]["id"].GetString();
+	type = "Mojang";
 
 	return dom["clientToken"].GetString();
 }

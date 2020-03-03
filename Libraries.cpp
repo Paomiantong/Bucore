@@ -59,7 +59,13 @@ std::string Libraries::ToClassPathArg()
 	for(int i=0;i<library.size();i++)
 	{
 		if(!library[i].native)
-			temp+=library[i].path+";";
+		{
+			if(i!=library.size()-1)
+				temp+=library[i].path+";";
+			else
+				temp+=library[i].path;
+		}
+
 	}
 	return temp;
 }

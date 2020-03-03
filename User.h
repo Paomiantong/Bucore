@@ -19,10 +19,13 @@ class User
 	public:
 		User();
 		User(std::string n);
+		User(std::string email,std::string passwords,std::string clientToken="");
 		std::string Getuuid();
 		std::string Getname();
 		std::string Gettype();
 		std::string GetaccessToken();
+		void Setuuid(std::string u);
+		void SetaccessToken(std::string a);
 		std::string auth(std::string email,std::string passwords,std::string clientToken="");
 };
 #endif
