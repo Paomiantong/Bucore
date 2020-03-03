@@ -16,7 +16,7 @@ Version::Version(std::string ver_json)
 	{
 	std::string temp = dom["logging"]["client"]["argument"].GetString(),lid = dom["logging"]["client"]["file"]["id"].GetString();
 	//"assets/log_configs"
-	Replace(temp,"${path}","\""+_cwd_+"assets/log_configs/"+lid+"\"",false);
+	Replace(temp,"${path}","\""+_cwd_+"/assets/log_configs/"+lid+"\"",false);
 	loggingArg = temp;
 	}
 
@@ -58,7 +58,7 @@ Version::Version(std::string ver_json)
 	//if(dom.HasMember("jar"))
 	if(dom.HasMember("inheritsFrom"))
 	{
-		std::string ihf=dom["inheritsFrom"].GetString(),p=_cwd_+"/.minecraft/version/"+ihf+"/"+ihf+".json";
+		std::string ihf=dom["inheritsFrom"].GetString(),p=_cwd_+"/.minecraft/versions/"+ihf+"/"+ihf+".json";
 		Version father(p);
 		libraries=father.GetLibraries();
 		assetidx=father.GetAssetIndex();
@@ -66,7 +66,7 @@ Version::Version(std::string ver_json)
 	Lib_load(dom["libraries"]);
 	if(!dom.HasMember("inheritsFrom"))
 	{
-		libraries.Add(_cwd_+"/.minecraft/version/"+ver+"/"+ver+".jar","null",false,-1);
+		libraries.Add(_cwd_+"/.minecraft/versions/"+ver+"/"+ver+".jar","null",false,-1);
 	}
 }
 
