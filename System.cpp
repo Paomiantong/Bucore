@@ -36,5 +36,7 @@ std::string Getarch()
         return "64";
     }
     return "32";
+#else
+	return "32";
 #endif
 }
