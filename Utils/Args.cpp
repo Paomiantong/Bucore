@@ -10,7 +10,7 @@ Args GETJVM_d()
 	JVM_d.Add("-XX:G1ReservePercent=20");
 	JVM_d.Add("-XX:MaxGCPauseMillis=50");
 	JVM_d.Add("-XX:G1HeapRegionSize=16M");
-	#ifdef __WIN32
+	#ifdef _WIN32
 	JVM_d.Add("-XX:HeapDumpPath=MojangTricksIntelDriversForPerformance_javaw.exe_minecraft.exe.heapdump");
 	#endif
 	JVM_d.Add("-Dminecraft.launcher.brand=Bucore");

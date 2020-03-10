@@ -134,7 +134,7 @@ void Version::Lib_load(Value& data)
 				///* TODO: Add arch <25-02-20, yourname> */
 				if(classifiers_key.find("${arch}"))
 				{
-					Replace(classifiers_key,"${arch}","32",false);
+					Replace(classifiers_key,"${arch}",_arch_,false);
 				}
 				last=tmp1[1]+"-"+tmp1[2]+"-"+classifiers_key;
 			}else
