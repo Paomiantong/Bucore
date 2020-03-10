@@ -12,7 +12,7 @@
 #endif
 
 #include <string>
-#ifdef __WIN32__
+#ifdef __WIN32
 #include <io.h>
 #include <windows.h>
 #define BC_MAXPATH 1024
@@ -20,8 +20,10 @@
 #include <unistd.h>
 #include <sys/stat.h>
 #endif
-#define _cwd_ getDir()
-#define _exist_ checkfile
-std::string getDir();
-bool checkfile(std::string file);
+#define _cwd_ GetDir()
+#define _exist_ Checkfile
+#define _arch_ Getarch()
+std::string GetDir();
+bool Checkfile(std::string file);
+int Getarch();
 #endif

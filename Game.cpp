@@ -10,14 +10,18 @@ Game::Game()
 	config="test";
 }
 
-void Game::LoadUser(User usr)
+bool Game::LoadUser(User usr)
 {
 	user = usr;
+	return true;
 }
 
-void Game::LoadVersion(Version ver)
+bool Game::LoadVersion(Version ver)
 {
+	if( !ver.IsInit() )
+		return false;
 	version = ver;
+	return true;
 }
 
 User Game::GetUser()

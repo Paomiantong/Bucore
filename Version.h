@@ -18,9 +18,11 @@ class Version
 		Args minecraftarguments;
 		Args jvmarguments;
 		std::string loggingArg;
+		bool isinit;
 	public:
 		Version();
 		Version(std::string ver_json);
+		bool IsInit();
 		Libraries GetLibraries();
 		std::string GetMainclass();
 		std::string GetId();

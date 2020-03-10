@@ -15,8 +15,8 @@ class Game
 	public:
 		static void Init();
 		Game();
-		void LoadVersion(Version ver);
-		void LoadUser(User usr);
+		bool LoadVersion(Version ver);
+		bool LoadUser(User usr);
 		Version GetVersion();
 		User GetUser();
 		std::string GenerateStartArguments();

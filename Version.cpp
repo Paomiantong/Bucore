@@ -1,10 +1,12 @@
 #include "Version.h"
 
 
-Version::Version(){}
-Version::Version(std::string ver_json)
+Version::Version():isinit(0){}
+Version::Version(std::string ver_json):isinit(0)
 {
 	std::string json = ReadF(ver_json);
+	if(json == "")
+		return;
 	Document dom;
 	dom.Parse(json.c_str());
 	ver = dom["id"].GetString();
@@ -60,6 +62,8 @@ Version::Version(std::string ver_json)
 	{
 		std::string ihf=dom["inheritsFrom"].GetString(),p=_cwd_+"/.minecraft/versions/"+ihf+"/"+ihf+".json";
 		Version father(p);
+		if(!father.IsInit())
+			return;
 		libraries=father.GetLibraries();
 		assetidx=father.GetAssetIndex();
 	}
@@ -68,6 +72,12 @@ Version::Version(std::string ver_json)
 	{
 		libraries.Add(_cwd_+"/.minecraft/versions/"+ver+"/"+ver+".jar","null",false,-1);
 	}
+	isinit = 1;
+}
+
+bool Version::IsInit()
+{
+	return isinit;
 }
 
 Libraries Version::GetLibraries()
