@@ -15,6 +15,7 @@
 #ifdef _WIN32
 #include <io.h>
 #include <windows.h>
+#include <tchar.h>
 #define BC_MAXPATH 1024
 #else
 #include <unistd.h>
@@ -25,5 +26,5 @@
 #define _arch_ Getarch()
 std::string GetDir();
 bool Checkfile(std::string file);
-int Getarch();
+std::string Getarch();
 #endif

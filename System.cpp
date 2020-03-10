@@ -24,7 +24,17 @@ bool Checkfile (std::string file)
 #endif
 }
 
-int Getarch()
+std::string Getarch()
 {
-
+#ifdef _WIN32
+	typedef void (WINAPI *LPFN_PGNSI)(LPSYSTEM_INFO); 
+    SYSTEM_INFO si;
+    LPFN_PGNSI pGNSI = (LPFN_PGNSI) GetProcAddress(GetModuleHandle(_T("kernel32.dll")), "GetNativeSystemInfo");
+    pGNSI(&si);
+     if (si.wProcessorArchitecture == PROCESSOR_ARCHITECTURE_AMD64 ||si.wProcessorArchitecture == PROCESSOR_ARCHITECTURE_IA64 )
+    {
+        return "64";
+    }
+    return "32";
+#endif
 }
