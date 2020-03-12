@@ -57,6 +57,10 @@ std::string HttpR::httpRequest(std::string url,bool IsPOST,std::string pCon)
 	
 	//执行http连接
 	res = curl_easy_perform(pCurl);
+	if(res == 0)
+	{
+		curl_easy_getinfo(pCurl, CURLINFO_RESPONSE_CODE, &httpcode);
+	}
 	//清除消息头
 	curl_slist_free_all(header_);
 	//清除handle
@@ -75,4 +79,9 @@ std::string HttpR::GET(std::string path, std::string con)
 std::string HttpR::POST(std::string path, std::string con)
 {
 	return httpRequest(h_host+path,true,con);
+}
+
+long HttpR::GetHttpCode()
+{
+	return httpcode;
 }

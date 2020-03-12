@@ -39,7 +39,7 @@ std::string Game::GenerateStartArguments()
 	std::string cwd = _cwd_;
 	Args jvm = version.GetJVMArguments(), game = version.GetMinecraftArguments();
 
-	jvm.Add("-Djava.library.path=\""+cwd+"/.minecraft/$natives\"");
+	jvm.Add("-Djava.library.path=\""+cwd+"/.minecraft/$natives/"+version.GetId()+"\"");
 	jvm.Reset("-cp","\""+version.GetLibraries().ToClassPathArg()+"\" "+version.GetMainclass());
 
 	game.Reset("--username","\""+user.Getname()+"\"");

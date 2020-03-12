@@ -27,5 +27,6 @@ class User
 		void Setuuid(std::string u);
 		void SetaccessToken(std::string a);
 		std::string auth(std::string email,std::string passwords,std::string clientToken="");
+		static bool authToken(std::string Token, std::string clientToken="");
 };
 #endif

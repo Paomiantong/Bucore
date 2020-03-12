@@ -68,3 +68,23 @@ std::string User::auth(std::string email, std::string passwords, std::string cli
 
 	return dom["clientToken"].GetString();
 }
+
+bool User::authToken(std::string Token, std::string clientToken)
+{
+	HttpR hr=HttpR("https://authserver.mojang.com",true);
+
+	std::stringstream str;
+	str<<"{";
+	str<<"\"accessToken\": \""+Token+"\"";
+	if(clientToken!="")
+		str<<",\"clientToken\":\""+clientToken+"\"";
+	str<<"}";
+	
+	hr.POST("/validate",str.str());
+
+	if(hr.GetHttpCode() == 204)
+		return true;
+	else 
+		return false;
+
+}
