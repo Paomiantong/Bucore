@@ -142,7 +142,7 @@ void Version::Lib_load(Value& data)
 			names=_cwd_+"/.minecraft/libraries/"+tmp1[0]+"/"+tmp1[1]+"/"+tmp1[2]+"/"+last+".jar";
 			if(v.HasMember("downloads"))
 			{
-				if(v["downloads"].HasMember("classifiers"))
+				if(v["downloads"].HasMember("classifiers") && (classifiers_key != ""))
 				{
 					Value& downloads=v["downloads"]["classifiers"][classifiers_key.c_str()];
 					libraries.Add(names,downloads["url"].GetString(),true,downloads["size"].GetInt());
