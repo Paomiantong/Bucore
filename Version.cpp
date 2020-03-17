@@ -147,7 +147,7 @@ void Version::Lib_load(Value& data)
 					Value& downloads=v["downloads"]["classifiers"][classifiers_key.c_str()];
 					libraries.Add(names,downloads["url"].GetString(),true,downloads["size"].GetInt());
 				}
-				else
+				else if(v["downloads"].HasMember("artifact"))
 				{
 					Value& downloads=v["downloads"]["artifact"];
 					libraries.Add(names,downloads["url"].GetString(),false,downloads["size"].GetInt());
