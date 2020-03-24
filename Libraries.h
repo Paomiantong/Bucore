@@ -11,9 +11,17 @@ using namespace rapidjson;
 class Library
 {
 	public:
-		Library(std::string p,std::string u,bool n,int s):path(p),url(u),native(n),size(s){};
+		Library(std::string p, std::string na, std::string u, std::string sh,bool n, int s )
+		:path(p),
+		name(na),
+		url(u),
+		sha1(sh),
+		native(n),
+		size(s){};
 		std::string path;
+		std::string name;
 		std::string url;
+		std::string sha1;
 		bool native;
 		int size;
 		bool check();
@@ -26,7 +34,7 @@ class Libraries
 		std::vector<int> lostlib;
 		std::vector<int> nativelib;
 	public:
-		void Add(std::string path,std::string url,bool native,int size);
+		void Add(std::string path, std::string name, std::string url, std::string sha1, bool native, int size);
 		std::vector<Library> GetAll();
 		std::vector<Library> GetLostLib();
 		std::vector<Library> GetNativeLib();

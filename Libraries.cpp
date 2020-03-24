@@ -8,9 +8,9 @@ bool Library::check()
 }
 
 /*Libraries Part*/
-void Libraries::Add(std::string path,std::string url,bool native,int size)
+void Libraries::Add(std::string path, std::string name, std::string url, std::string sha1, bool native, int size)
 {
-	library.push_back(Library(path,url,native,size));
+	library.push_back(Library(path,name,url,sha1,native,size));
 }
 
 std::vector<Library> Libraries::GetLostLib()
@@ -61,9 +61,9 @@ std::string Libraries::ToClassPathArg()
 		if(!library[i].native)
 		{
 			if(i!=library.size()-1)
-				temp+=library[i].path+";";
+				temp+=library[i].path+library[i].name+";";
 			else
-				temp+=library[i].path;
+				temp+=library[i].path+library[i].name;
 		}
 
 	}
