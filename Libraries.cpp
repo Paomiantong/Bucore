@@ -4,7 +4,7 @@
 
 bool Library::check()
 {
-	return _exist_(path);
+	return _exist_(path+name);
 }
 
 /*Libraries Part*/
