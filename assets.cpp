@@ -21,6 +21,8 @@ std::string assets::GetUrl()
 	return "http://resources.download.minecraft.net/"+m_sPrefix+"/"+m_sHash;
 }
 
+assetsIndex::assetsIndex(std::string u,std::string p):m_sUrl(u),m_sPath(p){}
+
 void assetsIndex::AddAsset(assets as)
 {
 	m_vAssets.push_back(as);
