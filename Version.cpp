@@ -11,8 +11,12 @@ Version::Version(std::string ver_json):isinit(0)
 	dom.Parse(json.c_str());
 	ver = dom["id"].GetString();
 	mainclass = dom["mainClass"].GetString();
-	if(dom.HasMember("assetIndex"))
-		assetidx=dom["assetIndex"]["id"].GetString();
+	if (dom.HasMember("assetIndex"))
+	{
+		assetidx = dom["assetIndex"]["id"].GetString();
+		asidx = Assets(dom["assetIndex"]["url"].GetString(), _cwd_ + "/.minecraft/assets/indexes/" + assetidx + ".json");
+	}
+
 	//Arguments
 	if(dom.HasMember("logging"))
 	{
@@ -78,6 +82,11 @@ Version::Version(std::string ver_json):isinit(0)
 bool Version::IsInit()
 {
 	return isinit;
+}
+
+Assets Version::GetAssets()
+{
+	return asidx;
 }
 
 Libraries Version::GetLibraries()
