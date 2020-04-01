@@ -1,8 +1,9 @@
 *.o
+/VC++/
 /.minecraft/
+Addstdafx4Bucore.exe
 go
 test4http
-p
 test.cpp
 test4http.cpp
 ts.cpp
