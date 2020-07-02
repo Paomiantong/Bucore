@@ -13,12 +13,17 @@ bool Asset::check()
 
 std::string Asset::GetPath()
 {
-	return _cwd_+"/.minecraft/assets/objects/"+m_sPrefix+"/"+m_sHash;
+	return _cwd_+"/.minecraft/assets/objects/"+m_sPrefix+"/";
 }
 
 std::string Asset::GetUrl()
 {
 	return "http://resources.download.minecraft.net/"+m_sPrefix+"/"+m_sHash;
+}
+
+std::string Asset::GetName()
+{
+	return m_sHash;
 }
 
 Assets::Assets()
