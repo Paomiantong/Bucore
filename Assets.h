@@ -16,7 +16,6 @@ public:
 	bool check();
 	std::string GetPath();
 	std::string GetUrl();
-	std::string GetName();
 
 private:
 	std::string m_sHash;
