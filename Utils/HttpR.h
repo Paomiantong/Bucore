@@ -14,7 +14,7 @@ class HttpR
 		HttpR(std::string host,bool _IsSSL);
 		std::string GET(std::string path,std::string con);
 		std::string POST(std::string path,std::string con);
-		std::string httpRequest(std::string url,bool IsPOST=false,std::string pCon="");
+		std::string HttpRequest(std::string url,bool IsPOST=false,std::string postcon="");
 		long GetHttpCode();
 		static void HttpR_init();
 		static size_t CurlWriteBuffer(char *buffer, size_t size, size_t nmemb, std::string* stream);

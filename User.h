@@ -12,8 +12,8 @@ using namespace rapidjson;
 class User
 {
 	private:
-		std::string name;
-		std::string type;
+		std::string Name;
+		std::string Type;
 		std::string uuid;
 		std::string accessToken;
 	public:
@@ -21,12 +21,12 @@ class User
 		User(std::string n);
 		User(std::string email,std::string passwords,std::string clientToken="");
 		std::string Getuuid();
-		std::string Getname();
-		std::string Gettype();
+		std::string GetName();
+		std::string GetType();
 		std::string GetaccessToken();
 		void Setuuid(std::string u);
 		void SetaccessToken(std::string a);
-		std::string auth(std::string email,std::string passwords,std::string clientToken="");
-		static bool authToken(std::string Token, std::string clientToken="");
+		std::string Auth(std::string email,std::string passwords,std::string clientToken="");
+		static bool AuthToken(std::string Token, std::string clientToken="");
 };
 #endif

@@ -12,19 +12,19 @@ class Library
 {
 	public:
 		Library(std::string p, std::string na, std::string u, std::string sh,bool n, int s )
-		:path(p),
-		name(na),
-		url(u),
-		sha1(sh),
-		native(n),
-		size(s){};
-		std::string path;
-		std::string name;
-		std::string url;
-		std::string sha1;
-		bool native;
-		int size;
-		bool check();
+		:Path(p),
+		Name(na),
+		Url(u),
+		Sha1(sh),
+		Native(n),
+		FileSize(s){};
+		std::string Path;
+		std::string Name;
+		std::string Url;
+		std::string Sha1;
+		bool Native;
+		int FileSize;
+		bool Check();
 };
 
 class Libraries

@@ -22,9 +22,9 @@
 #include <sys/stat.h>
 #endif
 #define _cwd_ GetDir()
-#define _exist_ Checkfile
-#define _arch_ Getarch()
+#define _exist_ CheckFile
+#define _arch_ GetArch()
 std::string GetDir();
-bool Checkfile(std::string file);
-std::string Getarch();
+bool CheckFile(std::string file);
+std::string GetArch();
 #endif

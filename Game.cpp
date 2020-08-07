@@ -42,14 +42,14 @@ std::string Game::GenerateStartArguments()
 	jvm.Add("-Djava.library.path=\""+cwd+"/.minecraft/$natives/"+version.GetId()+"\"");
 	jvm.Reset("-cp","\""+version.GetLibraries().ToClassPathArg()+"\" "+version.GetMainclass());
 
-	game.Reset("--username","\""+user.Getname()+"\"");
+	game.Reset("--username","\""+user.GetName()+"\"");
 	game.Reset("--version","\""+version.GetId()+"\"");
 	game.Reset("--gameDir","\""+cwd+"/.minecraft\"");
 	game.Reset("--assetsDir","\""+cwd+"/.minecraft/assets\"");
 	game.Reset("--assetIndex",version.GetAssetIndex());
 	game.Reset("--uuid",user.Getuuid());
 	game.Reset("--accessToken",user.GetaccessToken());
-	game.Reset("--userType",user.Gettype());
+	game.Reset("--userType",user.GetType());
 	game.Reset("--versionType","Bucore");
 	if(game.Find("--userProperties"))
 		game.Reset("--userProperties","{}");

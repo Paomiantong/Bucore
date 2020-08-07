@@ -37,10 +37,10 @@ std::string ReadF(std::string path)
 	return str;
 }
 
-std::vector<std::string> split(const std::string& str, const std::string& delim)
+std::vector<std::string> Split(const std::string& str, const std::string& delim)
 {
-	std::vector<std::string> res;
-	if("" == str) return res;
+	std::vector<std::string> Result;
+	if("" == str) return Result;
 	char * strs = new char[str.length() + 1] ; 
 	strcpy(strs, str.c_str());
 	char * d = new char[delim.length() + 1];
@@ -48,8 +48,8 @@ std::vector<std::string> split(const std::string& str, const std::string& delim)
 	char *p = strtok(strs, d);
 	while(p) {
 		std::string s = p;
-		res.push_back(s); 
+		Result.push_back(s); 
 		p = strtok(NULL, d);
 	}
-	return res;
+	return Result;
 }

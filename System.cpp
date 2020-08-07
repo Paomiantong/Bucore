@@ -14,7 +14,7 @@ std::string GetDir()
     return dirName;
 }
 
-bool Checkfile (std::string file)
+bool CheckFile (std::string file)
 {
 #ifdef _WIN32
 	return (_access(file.c_str(), 0) != -1);
@@ -24,7 +24,7 @@ bool Checkfile (std::string file)
 #endif
 }
 
-std::string Getarch()
+std::string GetArch()
 {
 #ifdef _WIN32
 	typedef void (WINAPI *LPFN_PGNSI)(LPSYSTEM_INFO); 

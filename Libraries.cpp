@@ -2,9 +2,9 @@
 
 /*Library Part*/
 
-bool Library::check()
+bool Library::Check()
 {
-	return _exist_(path+name);
+	return _exist_(Path+Name);
 }
 
 /*Libraries Part*/
@@ -19,7 +19,7 @@ std::vector<Library> Libraries::GetLostLib()
 	lostlib.clear();
 	for(int i=0;i<library.size();i++)
 	{
-		if(!library[i].check())
+		if(!library[i].Check())
 		{
 			lostlib.push_back(i);
 		}
@@ -36,7 +36,7 @@ std::vector<Library> Libraries::GetNativeLib()
 	std::vector<Library> res;
 	for(int i=0;i<library.size();i++)
 	{
-		if(library[i].native)
+		if(library[i].Native)
 		{
 			nativelib.push_back(i);
 		}
@@ -58,12 +58,12 @@ std::string Libraries::ToClassPathArg()
 	std::string temp;
 	for(int i=0;i<library.size();i++)
 	{
-		if(!library[i].native)
+		if(!library[i].Native)
 		{
 			if(i!=library.size()-1)
-				temp+=library[i].path+library[i].name+";";
+				temp+=library[i].Path+library[i].Name+";";
 			else
-				temp+=library[i].path+library[i].name;
+				temp+=library[i].Path+library[i].Name;
 		}
 
 	}

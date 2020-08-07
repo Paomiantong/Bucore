@@ -9,7 +9,6 @@ void HttpR::HttpR_init()
 
 size_t HttpR::CurlWriteBuffer(char *buffer, size_t size, size_t nmemb, std::string* stream)
 {
-	//第二个参数为每个数据的大小，第三个为数据个数，最后一个为接收变量
 	size_t sizes = size*nmemb;
 	if(stream == NULL) 
 		return 0;
@@ -17,68 +16,62 @@ size_t HttpR::CurlWriteBuffer(char *buffer, size_t size, size_t nmemb, std::stri
 	return sizes;
 }
 
-std::string HttpR::httpRequest(std::string url,bool IsPOST,std::string pCon)
+std::string HttpR::HttpRequest(std::string url,bool IsPOST,std::string postcon)
 {
-	CURL* pCurl=NULL;
-	CURLcode res;
-	std::string response;
-	pCurl = curl_easy_init();	
-	if(pCurl==NULL)
-		return "Failed to InitpCurl";
+	CURL* CurlPointer=NULL;
+	CURLcode Result;
+	std::string Response;
+	CurlPointer = curl_easy_init();	
+	if(CurlPointer==NULL)
+		return "Failed to Init CurlPointer";
 	//设置请求头
 	struct	curl_slist* header_ = NULL;
 	header_ = curl_slist_append(header_,"Content-Type: application/json;charset=utf-8");
+
+	curl_easy_setopt(CurlPointer, CURLOPT_HTTPHEADER, header_);
 	
-	//添加请求头到handle
-	curl_easy_setopt(pCurl, CURLOPT_HTTPHEADER, header_);
-	
-	//设置URL
-	curl_easy_setopt(pCurl, CURLOPT_URL, url.c_str());	
+	curl_easy_setopt(CurlPointer, CURLOPT_URL, url.c_str());	
  
 	if(IsPOST == true)
 	{
-		curl_easy_setopt(pCurl,CURLOPT_POSTFIELDS,pCon.c_str());			   //post请求消息数据	 
-		curl_easy_setopt(pCurl,CURLOPT_POSTFIELDSIZE,pCon.length());		   //消息长度
+		curl_easy_setopt(CurlPointer,CURLOPT_POSTFIELDS,postcon.c_str());	
+		curl_easy_setopt(CurlPointer,CURLOPT_POSTFIELDSIZE,postcon.length());
 	}
-	curl_easy_setopt(pCurl, CURLOPT_WRITEFUNCTION, CurlWriteBuffer);
-	curl_easy_setopt(pCurl,CURLOPT_WRITEDATA,&response);//数据接收变量
-	curl_easy_setopt(pCurl,CURLOPT_TIMEOUT,10000);	//连接超时时间
+	curl_easy_setopt(CurlPointer, CURLOPT_WRITEFUNCTION, CurlWriteBuffer);
+	curl_easy_setopt(CurlPointer,CURLOPT_WRITEDATA,&Response);
+	curl_easy_setopt(CurlPointer,CURLOPT_TIMEOUT,10000);
  
-	//不支持ssl验证
 	if(IsSSL == 0)
 	{
-		curl_easy_setopt(pCurl, CURLOPT_SSL_VERIFYPEER, 0);//设定为不验证证书和HOST
-		curl_easy_setopt(pCurl, CURLOPT_SSL_VERIFYHOST, 0);
+		curl_easy_setopt(CurlPointer, CURLOPT_SSL_VERIFYPEER, 0);
+		curl_easy_setopt(CurlPointer, CURLOPT_SSL_VERIFYHOST, 0);
 	}
 	else
 	{
-		curl_easy_setopt(pCurl, CURLOPT_SSL_VERIFYPEER, 0L);		
+		curl_easy_setopt(CurlPointer, CURLOPT_SSL_VERIFYPEER, 0L);		
 	}
 	
-	//执行http连接
-	res = curl_easy_perform(pCurl);
-	if(res == 0)
+	Result = curl_easy_perform(CurlPointer);
+	if(Result == 0)
 	{
-		curl_easy_getinfo(pCurl, CURLINFO_RESPONSE_CODE, &httpcode);
+		curl_easy_getinfo(CurlPointer, CURLINFO_RESPONSE_CODE, &httpcode);
 	}
-	//清除消息头
 	curl_slist_free_all(header_);
-	//清除handle
-	curl_easy_cleanup(pCurl);
+	curl_easy_cleanup(CurlPointer);
  
-	return response;
+	return Response;
 }
 
 std::string HttpR::GET(std::string path, std::string con)
 {
 	std::string url=h_host+path+"?"+con;
-	return httpRequest(url);
+	return HttpRequest(url);
 }
 
 
 std::string HttpR::POST(std::string path, std::string con)
 {
-	return httpRequest(h_host+path,true,con);
+	return HttpRequest(h_host+path,true,con);
 }
 
 long HttpR::GetHttpCode()

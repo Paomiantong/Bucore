@@ -2,11 +2,11 @@
 
 User::User(){}
 
-User::User(std::string n):name(n){type="Legacy";}
+User::User(std::string n):Name(n){Type="Legacy";}
 
 User::User(std::string email,std::string passwords,std::string clientToken)
 {
-	auth(email,passwords,clientToken);
+	Auth(email,passwords,clientToken);
 }
 
 std::string User::Getuuid()
@@ -14,14 +14,14 @@ std::string User::Getuuid()
 	return uuid;
 }
 
-std::string User::Getname()
+std::string User::GetName()
 {
-	return name;
+	return Name;
 }
 
-std::string User::Gettype()
+std::string User::GetType()
 {
-	return type;
+	return Type;
 }
 
 std::string User::GetaccessToken()
@@ -39,7 +39,7 @@ void User::SetaccessToken(std::string a)
 	accessToken = a;
 }
 
-std::string User::auth(std::string email, std::string passwords, std::string clientToken)
+std::string User::Auth(std::string email, std::string passwords, std::string clientToken)
 {
 	HttpR hr=HttpR("https://authserver.mojang.com",true);
 
@@ -62,14 +62,14 @@ std::string User::auth(std::string email, std::string passwords, std::string cli
 	}
 
 	accessToken = dom["accessToken"].GetString();
-	name = dom["selectedProfile"]["name"].GetString();
+	Name = dom["selectedProfile"]["name"].GetString();
 	uuid = dom["selectedProfile"]["id"].GetString();
-	type = "Mojang";
+	Type = "Mojang";
 
 	return dom["clientToken"].GetString();
 }
 
-bool User::authToken(std::string Token, std::string clientToken)
+bool User::AuthToken(std::string Token, std::string clientToken)
 {
 	HttpR hr=HttpR("https://authserver.mojang.com",true);
 

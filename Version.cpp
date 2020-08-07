@@ -33,7 +33,7 @@ Version::Version(std::string ver_json):isinit(0)
 	if(dom.HasMember("minecraftArguments"))//after 1.13
 	{
 		std::string temp = dom["minecraftArguments"].GetString();
-		std::vector<std::string> temp_vector = split(temp," ");
+		std::vector<std::string> temp_vector = Split(temp," ");
 		std::string pre = "";
 		for(auto i : temp_vector)
 		{
@@ -128,7 +128,7 @@ void Version::Lib_load(Value& data)
 				continue;
 			}
 			//Split The name
-			std::vector<std::string> tmp1=split(v["name"].GetString(),":");
+			std::vector<std::string> tmp1=Split(v["name"].GetString(),":");
 			std::string last,path;
 			for (int x=0;x<tmp1[0].length();x++)
 			{

@@ -13,13 +13,13 @@ class Asset
 {
 public:
 	Asset (std::string hash);
-	bool check();
+	bool Check();
 	std::string GetPath();
 	std::string GetUrl();
 
 private:
-	std::string m_sHash;
-	std::string m_sPrefix;
+	std::string Hash;
+	std::string Prefix;
 };
 
 class Assets
@@ -31,8 +31,8 @@ public:
 	std::string GetUrl();
 	std::vector<Asset> GetLostAssest();
 private:
-	std::string m_sUrl;
-	std::string m_sPath;
+	std::string Url;
+	std::string Path;
 };
 
 #endif
