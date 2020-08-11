@@ -6,7 +6,7 @@
 #include "rapidjson/document.h"
 using namespace rapidjson;
 
-#include "System.h"
+#include "Utils/System.h"
 #include "Utils/Tools.h"
 
 class Asset
@@ -22,11 +22,11 @@ private:
 	std::string Prefix;
 };
 
-class Assets
+class AssetIndex
 {
 public:
-	Assets();
-	Assets (std::string u, std::string p);
+	AssetIndex();
+	AssetIndex (std::string u, std::string p);
 	std::string GetPath();
 	std::string GetUrl();
 	std::vector<Asset> GetLostAssest();

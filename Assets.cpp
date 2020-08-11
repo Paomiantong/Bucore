@@ -21,25 +21,25 @@ std::string Asset::GetUrl()
 	return "http://resources.download.minecraft.net/"+Prefix+"/"+Hash;
 }
 
-Assets::Assets()
+AssetIndex::AssetIndex()
 {
 }
 
-Assets::Assets(std::string u, std::string p):Url(u),Path(p)
+AssetIndex::AssetIndex(std::string u, std::string p):Url(u),Path(p)
 {
 }
 
-std::string Assets::GetPath()
+std::string AssetIndex::GetPath()
 {
 	return Path;
 }
 
-std::string Assets::GetUrl()
+std::string AssetIndex::GetUrl()
 {
 	return Url;
 }
 
-std::vector<Asset> Assets::GetLostAssest()
+std::vector<Asset> AssetIndex::GetLostAssest()
 {
 	Document dom;
 	dom.Parse(ReadF(Path).c_str());

@@ -14,7 +14,7 @@ Version::Version(std::string ver_json):isinit(0)
 	if (dom.HasMember("assetIndex"))
 	{
 		assetidx = dom["assetIndex"]["id"].GetString();
-		asidx = Assets(dom["assetIndex"]["url"].GetString(), _cwd_ + "/.minecraft/assets/indexes/" + assetidx + ".json");
+		asidx = AssetIndex(dom["assetIndex"]["url"].GetString(), _cwd_ + "/.minecraft/assets/indexes/" + assetidx + ".json");
 	}
 
 	//Arguments
@@ -84,7 +84,7 @@ bool Version::IsInit()
 	return isinit;
 }
 
-Assets Version::GetAssets()
+AssetIndex Version::GetAssets()
 {
 	return asidx;
 }

@@ -1,4 +1,4 @@
-objs= test.o Game.o Version.o Libraries.o System.o Assets.o Utils/Tools.o Utils/HttpR.o Utils/Args.o User.o
+objs= test.o Game.o Version.o Libraries.o Assets.o Utils/System.o Utils/Tools.o Utils/HttpR.o Utils/Args.o User.o
 
 objs4http = test4http.o Utils/HttpR.o Utils/Tools.o User.o
 
@@ -29,7 +29,7 @@ Version.o : Version.h Version.cpp
 
 Libraries.o : Libraries.h
 
-System.o : System.h
+Utils/System.o : Utils/System.h
 
 Assets.o : Assets.h
 
