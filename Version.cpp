@@ -4,13 +4,22 @@
 Version::Version():isinit(0){}
 Version::Version(std::string ver_json):isinit(0)
 {
+	//let json string to be a json object
 	std::string json = ReadF(ver_json);
 	if(json == "")
 		return;
 	Document dom;
 	dom.Parse(json.c_str());
+	
+	//get game version
 	ver = dom["id"].GetString();
+
+
+	//get version mainclass
 	mainclass = dom["mainClass"].GetString();
+	
+
+	//get assetIndex, there will not be an assetIndex if the version is a modloader.
 	if (dom.HasMember("assetIndex"))
 	{
 		assetidx = dom["assetIndex"]["id"].GetString();
@@ -25,7 +34,8 @@ Version::Version(std::string ver_json):isinit(0)
 	Replace(temp,"${path}","\""+_cwd_+"/assets/log_configs/"+lid+"\"",false);
 	loggingArg = temp;
 	}
-
+	
+	//generate start arguments
 	jvmarguments = JVM_ARGS_D;
 	jvmarguments.Add(loggingArg);
 	jvmarguments.Add("-cp","");
@@ -61,7 +71,10 @@ Version::Version(std::string ver_json):isinit(0)
 			}
 		}
 	}
+
 	//if(dom.HasMember("jar"))
+	
+	//if the version is a modloader it will have inheritsFrom
 	if(dom.HasMember("inheritsFrom"))
 	{
 		std::string ihf=dom["inheritsFrom"].GetString(),p=_cwd_+"/.minecraft/versions/"+ihf+"/"+ihf+".json";
@@ -71,11 +84,17 @@ Version::Version(std::string ver_json):isinit(0)
 		libraries=father.GetLibraries();
 		assetidx=father.GetAssetIndex();
 	}
+
+	//load libraries
 	Lib_load(dom["libraries"]);
+
+	//if the version is not a modloader , you should add itself to libraries
 	if(!dom.HasMember("inheritsFrom"))
 	{
 		libraries.Add(_cwd_+"/.minecraft/versions/"+ver+"/",ver+".jar","null","",false,-1);
 	}
+
+	//Init Done
 	isinit = 1;
 }
 
