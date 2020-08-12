@@ -7,10 +7,13 @@
 #include "Utils/Tools.h"
 #include "Utils/Args.h"
 
+bool AllowChecker(Value &val);
+
 class Version
 {
 	private:
-		void Lib_load(Value& data);
+		// void Lib_load(Value& data);
+		friend class VersionParser;
 		AssetIndex asidx;
 		Libraries libraries;
 		std::string from;
@@ -35,5 +38,19 @@ class Version
 		//Assets assets;
 };
 
-bool AllowChecker(Value &val);
+class VersionParser
+{
+	public:
+		VersionParser(std::string VersionJson_,Version* VersionPointer_);
+		virtual void Parse();
+		virtual void LibrariesLoader(Value& data);
+		bool IsInit();
+	protected:
+		Version* VersionPointer;
+		std::string VersionJson;
+		bool InitFlag;
+};
+
+VersionParser* CreateVersionParser(std::string src, Version* VersionPointer_);
+
 #endif
