@@ -6,8 +6,8 @@ Version::Version(std::string ver_json):isinit(0)
 {
 	VersionParser* parser = CreateVersionParser(ver_json,this);
 	parser->Parse();
+	isinit = parser.IsInit();
 	delete parser;
-	isinit = 1;
 }
 
 bool Version::IsInit()
